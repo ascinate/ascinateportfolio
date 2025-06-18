@@ -1,12 +1,7 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import mixitup from 'mixitup';
-
-import { RiAnchorFill } from "react-icons/ri";
-import Link from 'next/link';
 import Sidebar from '../component/Sidebar';
-
-
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
@@ -29,7 +24,7 @@ export default function Page() {
             },
         });
 
-        return () => mixer.destroy(); // Clean up
+        return () => mixer.destroy();
     }, []);
 
 
@@ -121,22 +116,22 @@ export default function Page() {
                         ref={containerRef}
                     >
                         {portfolioItems.map((item, index) => (
-              <div key={index} className={`col mix ${item.category}`}>
-                <div className="cm-port">
-                  <figure className="position-relative">
-                    <img src={item.image} alt="portfolio" className="w-100" />
-                    <div className="hover-effect-orange d-flex align-items-center justify-content-center">
-                      <a data-fancybox="wk" href={item.image} className="text-white fs-4 me-3">
-                       <TiArrowMinimise className='hover-icon-size'/>
-                      </a>
-                      <a target="_blank" href={item.link} className="text-white fs-4">
-                        <FaUnlink className='hover-icon-size'/>
-                      </a>
-                    </div>
-                  </figure>
-                </div>
-              </div>
-            ))}
+                            <div key={index} className={`col mix ${item.category}`}>
+                                <div className="cm-port">
+                                <figure className="position-relative">
+                                    <img src={item.image} alt="portfolio" className="w-100" />
+                                    <div className="hover-effect-orange d-flex align-items-center justify-content-center">
+                                    <a data-fancybox="wk" href={item.image} className="text-white fs-4 me-3">
+                                    <TiArrowMinimise className='hover-icon-size'/>
+                                    </a>
+                                    <a target="_blank" href={item.link} className="text-white fs-4">
+                                        <FaUnlink className='hover-icon-size'/>
+                                    </a>
+                                    </div>
+                                </figure>
+                                </div>
+                            </div>
+                        ))}
                     </div>
 
                     <div id="pagination" className="pagination"></div>
