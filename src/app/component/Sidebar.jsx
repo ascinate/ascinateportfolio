@@ -11,22 +11,26 @@ function Sidebar() {
   const pathname = usePathname();
   const navItems = [
     {
+      id:1,
       name: "Web Development",
       links:"/",
       icon: <PiBracketsCurlyBold />,
       active: true,
     },
     {
+      id:2,
       name: "Web Design (UX/UI&)",
       links:"/webdesign",
       icon: <LuMonitorPlay />,
     },
     {
+      id:3,
       name: "Logo Design",
       links:"/logodesign",
       icon: <RiMagicLine />,
     },
     {
+      id:4,
       name: "Art Work",
       links:"/artwork",
       icon: <RiBrush2Line />,

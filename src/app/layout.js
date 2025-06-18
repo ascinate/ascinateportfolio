@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const quickSand = Quicksand({
+const quick = Quicksand({
   variable: "--font-quick-sand",
   subsets: ["latin"],
 });
 
-const NunitoSans = Nunito({
+const nunito = Nunito({
   variable: "--font-nunito-sand",
   subsets: ["latin"],
 });
@@ -36,15 +36,16 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         
-         <style>{`
+         <style>
+          {`
               h1, h2, h3, h4, h5, button , a, input , p {
-                font-family: ${quickSand.style.fontFamily};
+                font-family: ${quick.style.fontFamily};
               }
               body {
-                font-family: ${quickSand.style.fontFamily};
+                font-family: ${quick.style.fontFamily};
               }
               .controls .btn{
-                font-family: ${NunitoSans.style.fontFamily};
+                font-family: ${nunito.style.fontFamily};
               }
             `}
          </style>
