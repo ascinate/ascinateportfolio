@@ -19,7 +19,7 @@ function Sidebar() {
     },
     {
       id:2,
-      name: "Web Design (UX/UI&)",
+      name: "Web Design (UX/UI)",
       links:"/webdesign",
       icon: <LuMonitorPlay />,
     },
