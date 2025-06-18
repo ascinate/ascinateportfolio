@@ -92,7 +92,7 @@ export default function Page() {
  
             <main className="body-parat d-block">
                 <div className="d-flex align-items-center">
-                    <a className="btn link-bty d-inline-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample"> <i className="fas fa-bars"></i> </a>
+                    <Link className="btn link-bty d-inline-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample"> <i className="fas fa-bars"></i> </Link>
                     <h2 className="titels-head ms-3 ms-lg-0"> <span> Our </span>Graphics Work</h2>
                 </div>
  
@@ -117,10 +117,10 @@ export default function Page() {
                                 <img src={item.image} alt="portfolio" className="w-100" />
                                 <div className="hover-effect-orange d-flex align-items-center justify-content-center">
                                     <Link data-fancybox="wk" href={item.image} className="text-white fs-4 me-3">
-                                    <TiArrowMinimise className='hover-icon-size'/>
+                                        <TiArrowMinimise className='hover-icon-size'/>
                                     </Link>
                                     <Link target="_blank" href={item.link} className="text-white fs-4">
-                                    <RiLinksFill className='hover-icon-size'/>
+                                        <RiLinksFill className='hover-icon-size'/>
                                     </Link>
                                 </div>
                                 </figure>

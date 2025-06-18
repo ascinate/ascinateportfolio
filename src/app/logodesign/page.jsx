@@ -127,7 +127,7 @@ export default function Page() {
                                     <img src={item.image} alt="portfolio" className="w-100" />
                                     <div className="hover-effect-orange d-flex align-items-center justify-content-center">
                                     <Link data-fancybox="wk" href={item.image} className="text-white fs-4 me-3">
-                                    <TiArrowMinimise className='hover-icon-size'/>
+                                       <TiArrowMinimise className='hover-icon-size'/>
                                     </Link>
                                     <Link target="_blank" href={item.link} className="text-white fs-4">
                                         <RiLinksFill className='hover-icon-size'/>

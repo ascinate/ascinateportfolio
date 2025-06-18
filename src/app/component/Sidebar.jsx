@@ -49,8 +49,7 @@ function Sidebar() {
                       <li key={page.id}>
                           <Link
                               href={page.links}
-                              className={`d-flex align-items-center ${isActive ? 'active' : ''}`}
-                          >
+                              className={`d-flex align-items-center ${isActive ? 'active' : ''}`}>
                              {page.icon} <span> {page.name} </span>
                           </Link>
                       </li>
