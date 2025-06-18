@@ -4,10 +4,8 @@ import mixitup from 'mixitup';
 import { RiLinksFill } from "react-icons/ri";
 import Link from 'next/link';
 import Sidebar from '../component/Sidebar';
- 
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import { FaUnlink } from "react-icons/fa";
 import { TiArrowMinimise } from "react-icons/ti";
 import Image from 'next/image';
  
@@ -25,7 +23,7 @@ export default function Page() {
             },
         });
  
-        return () => mixer.destroy(); // Clean up
+        return () => mixer.destroy();
     }, []);
  
  
