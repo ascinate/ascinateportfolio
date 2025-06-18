@@ -5,6 +5,7 @@ import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { FaUnlink } from "react-icons/fa";
 import { TiArrowMinimise } from "react-icons/ti";
+import Link from 'next/link';
  
 export default function Page() {
  

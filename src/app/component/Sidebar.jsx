@@ -5,7 +5,7 @@ import { LuMonitorPlay } from "react-icons/lu";
 import { RiBrush2Line } from "react-icons/ri";
 import { RiMagicLine } from "react-icons/ri";
 import Image from 'next/image';
-
+ 
 function Sidebar() {
   const navItems = [
     {
@@ -26,14 +26,15 @@ function Sidebar() {
       icon: <RiBrush2Line />,
     },
   ];
-
+ 
   return (
     <aside className="slide-bar float-start">
       <div className="inside-content">
         <Link href="/" className="logo-sl d-block">
-          <Image width={246} height={122} alt="logo" src="/nw-logo.png" />
+          <Image alt="logo" width={200}
+            height={200} src="/nw-logo.png" />
         </Link>
-
+ 
         <div className="menu-05">
           <ul>
             {navItems.map((item, index) => (
@@ -51,5 +52,5 @@ function Sidebar() {
     </aside>
   );
 }
-
+ 
 export default Sidebar;
