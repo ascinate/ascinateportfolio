@@ -1,15 +1,30 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import mixitup from 'mixitup';
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import { FaUnlink } from "react-icons/fa";
 import { TiArrowMinimise } from "react-icons/ti";
+import { RiLinksFill } from "react-icons/ri";
+ 
 import Sidebar from './component/Sidebar';
+import Link from 'next/link';
+ 
 export default function Home() {
  
   const containerRef = useRef(null);
  
+  useEffect(() => {
+    const mixer = mixitup(containerRef.current, {
+      selectors: {
+        target: '.mix',
+      },
+      animation: {
+        duration: 300,
+      },
+    });
  
+    return () => mixer.destroy();
+  }, []);
  
   useEffect(() => {
     NativeFancybox.bind("[data-fancybox]", {});
@@ -104,12 +119,12 @@ export default function Home() {
                   <figure className="position-relative">
                     <img src={item.image} alt="portfolio" className="w-100" />
                     <div className="hover-effect-orange d-flex align-items-center justify-content-center">
-                      <a data-fancybox="wk" href={item.image} className="text-white fs-4 me-3">
+                      <Link data-fancybox="wk" href={item.image} className="text-white fs-4 me-3">
                        <TiArrowMinimise className='hover-icon-size'/>
-                      </a>
-                      <a target="_blank" href={item.link} className="text-white fs-4">
-                        <FaUnlink className='hover-icon-size'/>
-                      </a>
+                      </Link>
+                      <Link target="_blank" href={item.link} className="text-white fs-4">
+                        <RiLinksFill className='hover-icon-size'/>
+                      </Link>
                     </div>
                   </figure>
                 </div>

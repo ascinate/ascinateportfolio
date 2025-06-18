@@ -93,6 +93,8 @@ ul{
 }
 .menu-05 ul{
 	list-style-type: none;
+	margin: 0; 
+	padding: 0;
 }
 .menu-05 ul li span{
     color: #fff;
@@ -100,9 +102,13 @@ ul{
 	font-weight: 600;
 	font-family: "Quicksand", sans-serif;
 	transition: all 0.5s;
+	display: inline-block;
+	margin-left: 10px;
 }
 .menu-05 ul li{
 	margin-bottom: 8px;
+	display: inline-block;
+	width: 100%;
 }
 .menu-05 ul li i{
 	color: #ffd401;
@@ -284,6 +290,7 @@ ul{
     border-bottom: solid 1px #f77;
 	color: #fff;
 
+
 }
 .head-contact li:last-child a{
 	border-bottom: none !important;
@@ -404,4 +411,11 @@ ul{
 
 .hover-icon-size{
   font-size: 44px;
+}
+
+.menu-05 ul li svg {
+    color: #ffd401;
+    font-size: 24px;
+    position: relative;
+    top: 2px;
 }

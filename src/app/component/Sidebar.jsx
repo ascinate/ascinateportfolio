@@ -5,24 +5,30 @@ import { LuMonitorPlay } from "react-icons/lu";
 import { RiBrush2Line } from "react-icons/ri";
 import { RiMagicLine } from "react-icons/ri";
 import Image from 'next/image';
+import { usePathname } from "next/navigation";
  
 function Sidebar() {
+  const pathname = usePathname();
   const navItems = [
     {
-      name: <Link href="/">Web Development</Link>,
+      name: "Web Development",
+      links:"/",
       icon: <PiBracketsCurlyBold />,
       active: true,
     },
     {
-      name: <Link href="/webdesign">Web Design &#40;UX/UI&#41;</Link>,
+      name: "Web Design (UX/UI&)",
+      links:"/webdesign",
       icon: <LuMonitorPlay />,
     },
     {
-      name: <Link href="/logodesign">Logo Design</Link>,
+      name: "Logo Design",
+      links:"/logodesign",
       icon: <RiMagicLine />,
     },
     {
-      name: <Link href="/artwork">Art Work</Link>,
+      name: "Art Work",
+      links:"/artwork",
       icon: <RiBrush2Line />,
     },
   ];
@@ -37,12 +43,19 @@ function Sidebar() {
  
         <div className="menu-05">
           <ul>
-            {navItems.map((item, index) => (
-              <li key={index} className='d-flex align-items-center gap-2'>
-                {item.icon && <span className="nav-icon">{item.icon}</span>}
-                <span> {item.name} </span>
-              </li>
-            ))}
+            {navItems.map((page) => {
+                 const isActive = pathname === page.links;
+                  return (
+                      <li key={page.id}>
+                          <Link
+                              href={page.links}
+                              className={`d-flex align-items-center ${isActive ? 'active' : ''}`}
+                          >
+                             {page.icon} <span> {page.name} </span>
+                          </Link>
+                      </li>
+                  );
+              })}
           </ul>
         </div>
         <div className="copy-texr">
