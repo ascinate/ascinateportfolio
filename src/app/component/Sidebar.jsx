@@ -4,6 +4,7 @@ import { PiBracketsCurlyBold } from "react-icons/pi";
 import { LuMonitorPlay } from "react-icons/lu";
 import { RiBrush2Line } from "react-icons/ri";
 import { RiMagicLine } from "react-icons/ri";
+import Image from 'next/image';
 
 function Sidebar() {
   const navItems = [
@@ -29,9 +30,9 @@ function Sidebar() {
   return (
     <aside className="slide-bar float-start">
       <div className="inside-content">
-        <a href="index.html" className="logo-sl d-block">
-          <img alt="logo" src="/nw-logo.png" />
-        </a>
+        <Link href="/" className="logo-sl d-block">
+          <Image width={246} height={122} alt="logo" src="/nw-logo.png" />
+        </Link>
 
         <div className="menu-05">
           <ul>

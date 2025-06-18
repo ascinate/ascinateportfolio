@@ -1,38 +1,23 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import mixitup from 'mixitup';
-
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { FaUnlink } from "react-icons/fa";
 import { TiArrowMinimise } from "react-icons/ti";
-
 import Sidebar from './component/Sidebar';
-
 export default function Home() {
-
+ 
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    const mixer = mixitup(containerRef.current, {
-      selectors: {
-        target: '.mix',
-      },
-      animation: {
-        duration: 300,
-      },
-    });
-
-    return () => mixer.destroy(); // Clean up
-  }, []);
-
+ 
+ 
+ 
   useEffect(() => {
     NativeFancybox.bind("[data-fancybox]", {});
     return () => NativeFancybox.destroy();
   }, []);
-
-
-
+ 
+ 
+ 
   const categories = [
     { name: "All", filter: "all" },
     { name: "WordPress", filter: ".category-3" },
@@ -42,8 +27,8 @@ export default function Home() {
     { name: "BigCommerce", filter: ".category-6" },
     { name: "PHP", filter: ".category-7" },
   ];
-
-
+ 
+ 
   const portfolioItems = [
     {
       category: "category-3",
@@ -88,17 +73,17 @@ export default function Home() {
   ];
   return (
     <>
-
-
-
+ 
+ 
+ 
       <Sidebar />
-
+ 
       <main className="body-parat d-block">
         <div className="d-flex align-items-center">
           <a className="btn link-bty d-inline-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample"> <i className="fas fa-bars"></i> </a>
           <h2 className="titels-head ms-3 ms-lg-0"> <span> Our </span> Web Development  </h2>
         </div>
-
+ 
         <div className="port-div2 d-block w-100 mt-5">
           <div className="controls mt-3 mb-5 flex-column flex-sm-row filter-controls">
             {categories.map((cat, i) => (
@@ -107,7 +92,7 @@ export default function Home() {
               </button>
             ))}
           </div>
-
+ 
           <div
             className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gy-4 g-lg-5 bd-part"
             id="bd-part-new"
@@ -130,11 +115,11 @@ export default function Home() {
                 </div>
               </div>
             ))}
-
+ 
           </div>
           <div id="pagination" className="pagination"></div>
         </div>
-
+ 
       </main>
     </>
   );
