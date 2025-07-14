@@ -1,13 +1,16 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { PiBracketsCurlyBold } from "react-icons/pi";
 import { LuMonitorPlay } from "react-icons/lu";
 import { RiBrush2Line } from "react-icons/ri";
 import { RiMagicLine } from "react-icons/ri";
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
-function Sidebar({ onCategorySelect }) {
+function Sidebar() {
+  const pathname = usePathname();
   const [categories, setCategories] = useState([]);
 
   const icons = [
@@ -27,7 +30,7 @@ function Sidebar({ onCategorySelect }) {
           setCategories(data.categories);
         }
       } catch (error) {
-        console.error('Error fetching categoriess:', error);
+        console.error('Error fetching categories:', error);
       }
     }
 
@@ -37,23 +40,24 @@ function Sidebar({ onCategorySelect }) {
   return (
     <aside className="slide-bar float-start">
       <div className="inside-content">
-        <div className="logo-sl d-block">
+        <Link href="/" className="logo-sl d-block">
           <Image alt="logo" width={200} height={200} src="/nw-logo.png" />
-        </div>
+        </Link>
 
         <div className="menu-05">
           <ul>
             {categories.map((category, index) => {
+              const isActive = pathname === `/category/${category.slug}`;
               const icon = icons[index % icons.length];
+
               return (
                 <li key={category.id}>
-                  <button
-                    onClick={() => onCategorySelect(category)}
-                    className="d-flex align-items-center border-0 bg-transparent text-start w-100 text-white"
-                  >
+                  <Link
+                    href={`/category/${category.slug}`}
+                    className={`d-flex align-items-center ${isActive ? 'active' : ''}`}>
                     {icon}
                     <span>{category.name}</span>
-                  </button>
+                  </Link>
                 </li>
               );
             })}
