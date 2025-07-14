@@ -19,23 +19,23 @@ function Sidebar() {
     <RiMagicLine />,
     <RiBrush2Line />
   ];
-console.log("outer");
 
+  useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await fetch('https://ascinate.in/demo/portfolio/category');
+        console.log("Fetching categories from API...");
         
         const data = await res.json();
         console.log("Fetched data:", data);
         setCategories(data.categories || []);
-        console.log("Fetching categories from API...");
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
 
     fetchCategories();
-
+  }, []);
 
   return (
     <aside className="slide-bar float-start">
