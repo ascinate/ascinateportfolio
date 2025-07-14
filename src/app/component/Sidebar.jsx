@@ -27,7 +27,7 @@ function Sidebar({ onCategorySelect }) {
           setCategories(data.categories);
         }
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching categoriess:', error);
       }
     }
 
