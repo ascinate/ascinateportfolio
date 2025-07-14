@@ -20,10 +20,15 @@ function Sidebar() {
     <RiBrush2Line />
   ];
 
+
+  console.log("outer");
+  
   useEffect(() => {
     const fetchCategories = async () => {
+      console.log("innter");
+      
       try {
-        const res = await fetch('https://ascinate.in/demo/portfolio/category');
+        const res = await fetch('https://ascinate.in/demo/portfolio/category?json=1');
         console.log("Fetching categories from API...");
         
         const data = await res.json();
