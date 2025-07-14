@@ -26,9 +26,10 @@ function Sidebar() {
       try {
         const res = await fetch('https://ascinate.in/demo/portfolio/category?json=1');
         const data = await res.json();
-        console.log('fetching categories:',data);
+  
         if (data.categories) {
           setCategories(data.categories);
+            console.log('fetching categories:',data.categories);
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -66,7 +67,7 @@ function Sidebar() {
         </div>
 
         <div className="copy-texr">
-          <p>© 2025 Ascinate Technolog</p>
+          <p>© 2025 Ascinate Technology</p>
         </div>
       </div>
     </aside>
