@@ -70,7 +70,7 @@ function Sidebar() {
         </div>
 
         <div className="copy-texr">
-          <p>© 2025 Ascinate Technology</p>
+          <p>© 2025 Ascinate Technolog</p>
         </div>
       </div>
     </aside>
