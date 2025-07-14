@@ -13,7 +13,6 @@ function Sidebar() {
   const pathname = usePathname();
   const [categories, setCategories] = useState([]);
 
-  // Icon fallback array to visually differentiate categories
   const icons = [
     <PiBracketsCurlyBold />,
     <LuMonitorPlay />,
@@ -26,10 +25,9 @@ function Sidebar() {
       try {
         const res = await fetch('https://ascinate.in/demo/portfolio/api/category');
         const data = await res.json();
-  
+
         if (data.categories) {
           setCategories(data.categories);
-            console.log('fetching categories:',data.categories);
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -49,13 +47,13 @@ function Sidebar() {
         <div className="menu-05">
           <ul>
             {categories.map((category, index) => {
-              const isActive = pathname === `/${category.slug}`;
-              const icon = icons[index % icons.length]; // rotate icons if more than 4
+              const isActive = pathname === `/category/${category.slug}`;
+              const icon = icons[index % icons.length];
 
               return (
                 <li key={category.id}>
                   <Link
-                    href={`/${category.slug}`}
+                    href={`/category/${category.slug}`}
                     className={`d-flex align-items-center ${isActive ? 'active' : ''}`}>
                     {icon}
                     <span>{category.name}</span>
