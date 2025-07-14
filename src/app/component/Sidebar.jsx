@@ -24,11 +24,7 @@ function Sidebar() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-<<<<<<< HEAD
         const res = await fetch('https://ascinate.in/demo/portfolio/api/category');
-=======
-        const res = await fetch('https://ascinate.in/demo/portfolio/category?json=1');
->>>>>>> fc768a4522025d1ffa4eacd3d41cc385991f30a3
         const data = await res.json();
   
         if (data.categories) {
