@@ -16,12 +16,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filterTechId, setFilterTechId] = useState('all');
 
-  useEffect(() => {
-    NativeFancybox.bind("[data-fancybox]", {});
-    return () => NativeFancybox.destroy();
-  }, []);
-
-useEffect(() => {
+ useEffect(() => {
   async function fetchData() {
     const res = await fetch('https://ascinate.in/demo/portfolio/api/projects');
     const data = await res.json();
@@ -40,7 +35,6 @@ useEffect(() => {
   }
   fetchData();
 }, []);
-
 
   const technologies = useMemo(() => {
     if (!selectedCategory) return [];
@@ -62,9 +56,10 @@ useEffect(() => {
           <a className="btn link-bty d-inline-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample">
             <i className="fas fa-bars"></i>
           </a>
-          <h2 className="titels-head ms-3 ms-lg-0">
-            <span> Our </span> Web Development
-          </h2>
+       <h2 className="titels-head ms-3 ms-lg-0">
+  <span> Our </span> {selectedCategory ? selectedCategory.name : 'Web Development'}
+</h2>
+
         </div>
 
         <div className="port-div2 d-block w-100 mt-5">

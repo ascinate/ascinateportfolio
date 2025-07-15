@@ -6,6 +6,7 @@ import { LuMonitorPlay } from "react-icons/lu";
 import { RiBrush2Line } from "react-icons/ri";
 import { RiMagicLine } from "react-icons/ri";
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 function Sidebar({ onCategorySelect }) {
   const [categories, setCategories] = useState([]);
@@ -33,7 +34,7 @@ function Sidebar({ onCategorySelect }) {
 
     fetchCategories();
   }, []);
-
+ const pathname = usePathname();
   return (
     <aside className="slide-bar float-start">
       <div className="inside-content">
@@ -42,22 +43,24 @@ function Sidebar({ onCategorySelect }) {
         </div>
 
         <div className="menu-05">
-          <ul>
-            {categories.map((category, index) => {
-              const icon = icons[index % icons.length];
-              return (
-                <li key={category.id}>
-                  <button
-                    onClick={() => onCategorySelect(category)}
-                    className="d-flex align-items-center border-0 bg-transparent text-start w-100 text-white"
-                  >
-                    {icon}
-                    <span>{category.name}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+ <ul>
+  {categories.map((category, index) => {
+    const icon = icons[index % icons.length];
+    const isActive = pathname === `/${category.slug}`;
+    return (
+      <li key={category.id}>
+        <button
+          onClick={() => onCategorySelect(category)}
+          className={`d-flex align-items-center ${isActive ? 'active' : ''}`}
+        >
+          {icon}
+          <span>{category.name}</span>
+        </button>
+      </li>
+    );
+  })}
+</ul>
+
         </div>
 
         <div className="copy-texr">
