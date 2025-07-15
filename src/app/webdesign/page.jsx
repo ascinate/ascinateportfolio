@@ -5,7 +5,7 @@ import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { TiArrowMinimise } from "react-icons/ti";
 import { RiLinksFill } from "react-icons/ri";
-import Sidebar from './component/Sidebar';
+import Sidebar from '../component/Sidebar';
 import Link from 'next/link';
 
 export default function Home() {
