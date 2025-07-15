@@ -21,22 +21,26 @@ export default function Home() {
     return () => NativeFancybox.destroy();
   }, []);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch('https://ascinate.in/demo/portfolio/api/projects');
-        const data = await res.json();
+useEffect(() => {
+  async function fetchData() {
+    const res = await fetch('https://ascinate.in/demo/portfolio/api/projects');
+    const data = await res.json();
 
-        if (data.technologies && data.projects) {
-          setAllTechnologies(data.technologies);
-          setProjects(data.projects);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+    if (data.technologies && data.projects && data.categories) {
+      setAllTechnologies(data.technologies);
+      setProjects(data.projects);
+
+      // ✅ Automatically select the first category (Website Developer or any)
+      const firstCategoryId = data.categories[0]?.id;
+      const firstCategoryTechnologies = data.technologies.filter(t => t.category_id === firstCategoryId);
+      if (firstCategoryTechnologies.length > 0) {
+        setSelectedCategory({ id: firstCategoryId });
       }
     }
-    fetchData();
-  }, []);
+  }
+  fetchData();
+}, []);
+
 
   const technologies = useMemo(() => {
     if (!selectedCategory) return [];
