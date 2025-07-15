@@ -41,12 +41,26 @@ export default function Home() {
     return allTechnologies.filter(tech => tech.category_id === selectedCategory.id);
   }, [selectedCategory, allTechnologies]);
 
-  const filteredProjects = useMemo(() => {
-    if (filterTechId === 'all') return projects;
+const filteredProjects = useMemo(() => {
+  if (!selectedCategory) return [];
+
+  const categoryTechIds = allTechnologies
+    .filter(t => t.category_id === selectedCategory.id)
+    .map(t => t.id);
+
+  if (filterTechId === 'all') {
+    // ✅ Only projects using technologies under the selected category
     return projects.filter(project =>
-      project.technologies.some(tech => tech.id === filterTechId)
+      project.technologies.some(tech => categoryTechIds.includes(tech.id))
     );
-  }, [filterTechId, projects]);
+  }
+
+  // ✅ Filter by selected technology
+  return projects.filter(project =>
+    project.technologies.some(tech => tech.id === filterTechId)
+  );
+}, [filterTechId, projects, selectedCategory, allTechnologies]);
+
 
   return (
     <>
