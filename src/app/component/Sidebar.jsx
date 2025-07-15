@@ -45,11 +45,12 @@ function Sidebar({ onCategorySelect }) {
           <ul>
             {categories.map((category, index) => {
               const icon = icons[index % icons.length];
+              const isActive = pathname === `/${category.slug}`;
               return (
                 <li key={category.id}>
                   <button
                     onClick={() => onCategorySelect(category)}
-                    className="d-flex align-items-center border-0 bg-transparent text-start w-100 text-white"
+                   className={`d-flex align-items-center ${isActive ? 'active' : ''}`}
                   >
                     {icon}
                     <span>{category.name}</span>
