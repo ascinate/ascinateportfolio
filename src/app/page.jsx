@@ -16,6 +16,12 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filterTechId, setFilterTechId] = useState('all');
 
+      useEffect(() => {
+    NativeFancybox.bind("[data-fancybox]", {});
+    return () => NativeFancybox.destroy();
+  }, []);
+
+
  useEffect(() => {
   async function fetchData() {
     const res = await fetch('https://ascinate.in/demo/portfolio/api/projects');
@@ -110,7 +116,7 @@ const filteredProjects = useMemo(() => {
                 <div key={index} className={`col`}>
                   <div className="cm-port">
                     <figure className="position-relative">
-                      <img
+                      <img 
                         src={`https://ascinate.in/demo/portfolio/${featuredImage.image_url}`}
                         alt={featuredImage.alt_text || 'Project Image'}
                         className="w-100"
