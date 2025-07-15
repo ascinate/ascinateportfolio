@@ -16,11 +16,10 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filterTechId, setFilterTechId] = useState('all');
 
-      useEffect(() => {
+    useEffect(() => {
     NativeFancybox.bind("[data-fancybox]", {});
     return () => NativeFancybox.destroy();
   }, []);
-
 
  useEffect(() => {
   async function fetchData() {
@@ -32,11 +31,14 @@ export default function Home() {
       setProjects(data.projects);
 
       // ✅ Automatically select the first category (Website Developer or any)
-      const firstCategoryId = data.categories[0]?.id;
-      const firstCategoryTechnologies = data.technologies.filter(t => t.category_id === firstCategoryId);
-      if (firstCategoryTechnologies.length > 0) {
-        setSelectedCategory({ id: firstCategoryId });
-      }
+const firstCategory = data.categories[0];
+const firstCategoryTechnologies = data.technologies.filter(t => t.category_id === firstCategory.id);
+
+if (firstCategory && firstCategoryTechnologies.length > 0) {
+  setSelectedCategory(firstCategory); // ✅ now it has .name too
+}
+
+
     }
   }
   fetchData();
@@ -76,9 +78,10 @@ const filteredProjects = useMemo(() => {
           <a className="btn link-bty d-inline-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample">
             <i className="fas fa-bars"></i>
           </a>
-       <h2 className="titels-head ms-3 ms-lg-0">
-  <span> Our </span> {selectedCategory ? selectedCategory.name : 'Web Development'}
+     <h2 className="titels-head ms-3 ms-lg-0">
+  <span> Our </span> {selectedCategory?.name || 'Web Development'}
 </h2>
+
 
         </div>
 
@@ -116,7 +119,7 @@ const filteredProjects = useMemo(() => {
                 <div key={index} className={`col`}>
                   <div className="cm-port">
                     <figure className="position-relative">
-                      <img 
+                      <img
                         src={`https://ascinate.in/demo/portfolio/${featuredImage.image_url}`}
                         alt={featuredImage.alt_text || 'Project Image'}
                         className="w-100"
