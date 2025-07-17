@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
@@ -16,58 +15,58 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filterTechId, setFilterTechId] = useState('all');
 
-    useEffect(() => {
+  useEffect(() => {
     NativeFancybox.bind("[data-fancybox]", {});
     return () => NativeFancybox.destroy();
   }, []);
 
- useEffect(() => {
-  async function fetchData() {
-    const res = await fetch('https://ascinate.in/demo/portfolio/api/projects');
-    const data = await res.json();
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('https://ascinate.in/demo/portfolio/api/projects');
+      const data = await res.json();
 
-    if (data.technologies && data.projects && data.categories) {
-      setAllTechnologies(data.technologies);
-      setProjects(data.projects);
+      if (data.technologies && data.projects && data.categories) {
+        setAllTechnologies(data.technologies);
+        setProjects(data.projects);
 
-      // ✅ Automatically select the first category (Website Developer or any)
-const firstCategory = data.categories[0];
-const firstCategoryTechnologies = data.technologies.filter(t => t.category_id === firstCategory.id);
+        // ✅ Automatically select the first category (Website Developer or any)
+        const firstCategory = data.categories[0];
+        const firstCategoryTechnologies = data.technologies.filter(t => t.category_id === firstCategory.id);
 
-if (firstCategory && firstCategoryTechnologies.length > 0) {
-  setSelectedCategory(firstCategory); // ✅ now it has .name too
-}
+        if (firstCategory && firstCategoryTechnologies.length > 0) {
+          setSelectedCategory(firstCategory); // ✅ now it has .name too
+        }
 
 
+      }
     }
-  }
-  fetchData();
-}, []);
+    fetchData();
+  }, []);
 
   const technologies = useMemo(() => {
     if (!selectedCategory) return [];
     return allTechnologies.filter(tech => tech.category_id === selectedCategory.id);
   }, [selectedCategory, allTechnologies]);
 
-const filteredProjects = useMemo(() => {
-  if (!selectedCategory) return [];
+  const filteredProjects = useMemo(() => {
+    if (!selectedCategory) return [];
 
-  const categoryTechIds = allTechnologies
-    .filter(t => t.category_id === selectedCategory.id)
-    .map(t => t.id);
+    const categoryTechIds = allTechnologies
+      .filter(t => t.category_id === selectedCategory.id)
+      .map(t => t.id);
 
-  if (filterTechId === 'all') {
-    // ✅ Only projects using technologies under the selected category
+    if (filterTechId === 'all') {
+      // ✅ Only projects using technologies under the selected category
+      return projects.filter(project =>
+        project.technologies.some(tech => categoryTechIds.includes(tech.id))
+      );
+    }
+
+    // ✅ Filter by selected technology
     return projects.filter(project =>
-      project.technologies.some(tech => categoryTechIds.includes(tech.id))
+      project.technologies.some(tech => tech.id === filterTechId)
     );
-  }
-
-  // ✅ Filter by selected technology
-  return projects.filter(project =>
-    project.technologies.some(tech => tech.id === filterTechId)
-  );
-}, [filterTechId, projects, selectedCategory, allTechnologies]);
+  }, [filterTechId, projects, selectedCategory, allTechnologies]);
 
 
   return (
@@ -78,9 +77,9 @@ const filteredProjects = useMemo(() => {
           <a className="btn link-bty d-inline-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample">
             <i className="fas fa-bars"></i>
           </a>
-     <h2 className="titels-head ms-3 ms-lg-0">
-  <span> Our </span> {selectedCategory?.name || 'Web Development'}
-</h2>
+          <h2 className="titels-head ms-3 ms-lg-0">
+            <span> Our </span> {selectedCategory?.name || 'Web Development'}
+          </h2>
 
 
         </div>
@@ -115,7 +114,9 @@ const filteredProjects = useMemo(() => {
           >
             {filteredProjects.map((project, index) => {
               const featuredImage = project.images.find(img => img.is_featured) || project.images[0];
+
               return (
+
                 <div key={index} className={`col`}>
                   <div className="cm-port">
                     <figure className="position-relative">
@@ -125,12 +126,28 @@ const filteredProjects = useMemo(() => {
                         className="w-100"
                       />
                       <div className="hover-effect-orange d-flex align-items-center justify-content-center">
-                        <Link data-fancybox="wk" href={`https://ascinate.in/demo/portfolio/${featuredImage.image_url}`} className="text-white fs-4 me-3">
-                          <TiArrowMinimise className='hover-icon-size' />
-                        </Link>
-                        <Link target="_blank" href={project.project_url} className="text-white fs-4">
-                          <RiLinksFill className='hover-icon-size' />
-                        </Link>
+
+                        {featuredImage?.image_url && (
+                          <Link
+                            data-fancybox="wk"
+                            href={`https://ascinate.in/demo/portfolio/${featuredImage.image_url}`}
+                            className="text-white fs-4 me-3"
+                          >
+                            <TiArrowMinimise className="hover-icon-size" />
+                          </Link>
+                        )}
+
+                        {project?.project_url && (
+                          <Link
+                            target="_blank"
+                            href={project.project_url}
+                            className="text-white fs-4"
+                          >
+                            <RiLinksFill className="hover-icon-size" />
+                          </Link>
+                        )}
+
+
                       </div>
                     </figure>
                   </div>
@@ -145,4 +162,3 @@ const filteredProjects = useMemo(() => {
     </>
   );
 }
-
